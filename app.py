@@ -4,7 +4,7 @@ import streamlit as st
 import numpy as np
 
 
-st.header("Cellphone Recommender System Using Machine Learning")
+st.header("Cellphone Recommender System")
 
 model: NearestNeighbors = pd.read_pickle(open("artifacts/model.pkl", "rb"))
 phone_names = pd.read_pickle(open("artifacts/phone_names.pkl", "rb"))
