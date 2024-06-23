@@ -34,9 +34,9 @@ def fetch_poster(suggestion) -> tuple[list, list]:
     return (poster_url, price_list)
 
 
-def recommend_book(book_name) -> tuple[list, list, list]:
+def recommend_book(phone_name) -> tuple[list, list, list]:
     phones_list = []
-    phone_id = np.where(user_phone_matrix.index == book_name)[0][0]
+    phone_id = np.where(user_phone_matrix.index == phone_name)[0][0]
     (distance, suggestion) = model.kneighbors(
         user_phone_matrix.iloc[phone_id, :].values.reshape(1, -1),
         n_neighbors=6,
@@ -45,8 +45,8 @@ def recommend_book(book_name) -> tuple[list, list, list]:
     (poster_url, price_list) = fetch_poster(suggestion)
 
     for i in range(len(suggestion)):
-        books = user_phone_matrix.index[suggestion[i]]
-        for j in books:
+        phones = user_phone_matrix.index[suggestion[i]]
+        for j in phones:
             phones_list.append(j)
     return phones_list, poster_url, price_list
 
